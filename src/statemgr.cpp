@@ -6,35 +6,33 @@
 StateMgr::StateMgr() : states(), nextStates(), popAmount(0){}
 
 StateMgr::~StateMgr(){
-	while (!states.empty()){
-		delete states.back();
-    	states.pop_back();
-	}
+	for(state_itr i = nextStates.begin(), j = nextStates.end(); i != j; ++i)
+		delete (*i);
+	states.clear();
 }
 
 void StateMgr::update(Input& input, Uint32 delta){
-
-	while(popAmount > 0){
+	for(; popAmount > 0; --popAmount){
 		delete states.back();
 		states.pop_back();
-		--popAmount;
 	}
-
-	while(!nextStates.empty()){
-		states.push_back(nextStates.front());
-		nextStates.pop();
+	
+	if(!nextStates.empty()){
+		for(state_itr i = nextStates.begin(), j = nextStates.end(); i != j; ++i)
+			states.push_back(*i);
+		nextStates.clear();
 	}
+	
 	states.back()->update(input, delta);
 }
 
 void StateMgr::draw(std::vector<uint16_t>& indices){
-	for(state_itr i = states.begin(), j = states.end(); i != j; ++i){
-			(*i)->draw(indices);
-	}
+	for(state_itr i = states.begin(), j = states.end(); i != j; ++i)
+		(*i)->draw(indices);
 }
 
 void StateMgr::push(Gamestate* state){
-	nextStates.push(state);
+	nextStates.push_back(state);
 }
 
 void StateMgr::pop(int amount){

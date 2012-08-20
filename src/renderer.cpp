@@ -23,7 +23,6 @@ Renderer::Renderer(int w, int h,const char* caption) : gfx(1024),
 	fullscreen_h = SDL_GetVideoInfo()->current_h;
 	
 	reload(w, h, SDL_OPENGL | SDL_ANYFORMAT);
-	SDL_Delay(200);
 }
 
 void Renderer::reload(int w, int h, int flags){

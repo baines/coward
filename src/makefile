@@ -35,8 +35,8 @@ all: ../$(exec)
 $(builddir)/%.o: %.cpp $(headers)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 	
-$(builddir)/$(exec).res:
-	i586-mingw32msvc-windres $(builddir)/$(exec).rc -O coff -o $@
+$(builddir)/$(exec).res: $(builddir)/$(exec).rc
+	i586-mingw32msvc-windres $< -O coff -o $@
 
 clean:
 	rm -f $(objects) ../$(exec) *~

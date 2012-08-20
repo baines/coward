@@ -31,8 +31,8 @@ public:
 		MatrixMode(GL_MODELVIEW);
 		Enable(GL_TEXTURE_2D);
 		Enable(GL_BLEND);
-		//FrontFace(GL_CW);
-		//Enable(GL_CULL_FACE);
+		FrontFace(GL_CW);
+		Enable(GL_CULL_FACE);
 		BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		EnableClientState(GL_VERTEX_ARRAY);
 		EnableClientState(GL_TEXTURE_COORD_ARRAY);

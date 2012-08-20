@@ -3,9 +3,7 @@
 		typedef type (APIENTRY * name##_p) args;
 	#define UNDEF_GL_FN
 #endif
-_GL_FN(GLenum, GetError, (void))
 _GL_FN(void, FrontFace, (GLenum  mode))
-_GL_FN(const GLubyte*, GetString, (GLenum name))
 _GL_FN(void, GenTextures, (GLsizei n, GLuint *textures))
 _GL_FN(void, BindTexture, (GLenum target, GLuint texture))
 _GL_FN(void, TexParameteri, (GLenum target, GLenum pname, GLint param))

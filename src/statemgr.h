@@ -1,7 +1,6 @@
 #ifndef _STATEMGR_H_
 #define _STATEMGR_H_
 #include <vector>
-#include <queue>
 #include <stdint.h>
 
 class Gamestate;
@@ -17,8 +16,7 @@ public:
 	void push(Gamestate* state);
 private:
 	typedef std::vector<Gamestate*>::const_iterator state_itr;
-	std::vector<Gamestate*> states;
-	std::queue<Gamestate*> nextStates;
+	std::vector<Gamestate*> states, nextStates;
 	int popAmount;
 };
 

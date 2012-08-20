@@ -31,7 +31,7 @@ bool Engine::run(){
 	}
 	
 	while((delta = SDL_GetTicks() - time) < (renderer.vsync ? 1 : 16))
-		SDL_Delay(1);
+		SDL_Delay(16-delta);
 	//delta = SDL_GetTicks() - time;
 	time += delta;
 	
