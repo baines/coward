@@ -18,6 +18,7 @@ protected:
 		err |= Mix_OpenAudio(44100, AUDIO_S16, 2, 2048);
 		loaded = err ? -1 : 1;
 		if(err) fprintf(stderr, "Audio init failed: %s.\n", SDL_GetError());
+		Mix_Volume(-1, 64);
 	}
 	static int loaded;
 	static AudioMap audioMap;

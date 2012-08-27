@@ -6,9 +6,9 @@
 
 class Endscreen : public Gamestate {
 	public:
-		Endscreen(StateMgr& mgr, int score) : Gamestate(mgr), tex("title.png"),
-			title(tex, 160, 120, 256, 128, 1, 2), timer(0), 
-			stext(164, 106, 16, 16, "%d.%2d", score / 1000, (score/10) % 100) {
+		Endscreen(StateMgr& mgr, int score) : Gamestate(mgr),
+			title("text.png", 160, 120, 256, 128, 1, 2), timer(0), 
+			stext(164, 106, 16, 16, "%d.%02d", score / 1000, (score/10) % 100) {
 			title.setFrame(0, 1);
 		}
 		void update(Input& input, Uint32 delta){
@@ -24,7 +24,6 @@ class Endscreen : public Gamestate {
 			stext.draw(gfx);
 		}
 	private:
-		Texture tex;
 		Sprite title;
 		unsigned int timer;
 		Text stext;

@@ -8,6 +8,11 @@ The theme of the competition was "Cowardice".
 
 Builds & Runs on Linux (gcc) or Windows (mingw32).
 
+This version contains the following changes added after the competition:
+
++ Different font
++ Different title screen
+
 Original Readme:
 ================
 ```
