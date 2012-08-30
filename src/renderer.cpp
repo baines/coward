@@ -28,7 +28,7 @@ Renderer::Renderer(int w, int h,const char* caption) : gfx(1024),
 
 void Renderer::reload(int w, int h, int flags){
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-	//SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
+	SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
 	
 	if(!(screen = SDL_SetVideoMode(w, h, 32, flags))){
 		fprintf(stderr, "Video error: %s\n", SDL_GetError());
