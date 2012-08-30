@@ -15,6 +15,9 @@ bool Engine::run(){
 			case SDL_QUIT: 
 				running = false; 
 			break;
+			case SDL_VIDEORESIZE:
+				renderer.resize(e.resize.w, e.resize.h);
+			break;
 			case SDL_KEYUP:
 			case SDL_KEYDOWN:
 				input.mods = e.key.keysym.mod;

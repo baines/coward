@@ -8,8 +8,8 @@
 #include <SDL/SDL.h>
 
 class GLContext {
-	int initial_w, initial_h;
 public:
+	int initial_w, initial_h;
 	GLContext() : initial_w(320), initial_h(240)
 		#define _GL_FN(type, name, args) \
 			, name(0)

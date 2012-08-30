@@ -22,6 +22,7 @@ public:
 	void delQuad(uint16_t index){ gfx.pop(index/4); }
 	void toggleFullscreen(void);
 	void toggleBorder();
+	void resize(int w, int h);
 	int vsync;
 	Vec<Vert4> gfx;
 protected:

@@ -2,6 +2,7 @@
 #include "texture.h"
 #include "SDL/SDL.h"
 #include <cstdio>
+#include <cmath>
 
 GLContext gl;
 
@@ -22,7 +23,7 @@ Renderer::Renderer(int w, int h,const char* caption) : gfx(1024),
 	fullscreen_w = SDL_GetVideoInfo()->current_w;
 	fullscreen_h = SDL_GetVideoInfo()->current_h;
 	
-	reload(w, h, SDL_OPENGL | SDL_ANYFORMAT);
+	reload(w, h, SDL_OPENGL | SDL_RESIZABLE);
 }
 
 void Renderer::reload(int w, int h, int flags){
@@ -42,7 +43,7 @@ void Renderer::reload(int w, int h, int flags){
 }
 
 void Renderer::toggleFullscreen() {
-	int flags = screen->flags ^ SDL_FULLSCREEN;
+	int flags = screen->flags ^ (SDL_FULLSCREEN | SDL_RESIZABLE);
 	
 	if((flags & SDL_FULLSCREEN)){
 		reload(fullscreen_w, fullscreen_h, flags);
@@ -58,6 +59,15 @@ Vert4& Renderer::addQuad(float x, float y, float w, float h, uint16_t* out){
 	uint16_t r = gfx.push(v);
 	*out = r * 4;
 	return gfx[r];
+}
+
+void Renderer::resize(int w, int h){
+	if(screen->flags & SDL_FULLSCREEN) return;
+	float scale, f = modff(fminf(h / 240.0f, w / 320.0f), &scale);
+	if(f > 0.5f || scale < 1.0f) scale++;
+	windowed_w = gl.initial_w * scale;
+	windowed_h = gl.initial_h * scale;
+	reload(windowed_w, windowed_h, screen->flags);
 }
 
 inline void Renderer::toggleBorder(){
