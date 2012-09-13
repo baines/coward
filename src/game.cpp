@@ -12,8 +12,8 @@ Game::Game(StateMgr& mgr, int lvl, int prevhp) : Gamestate(mgr), tex("sprites.pn
 	pwr_timer(10000 + rand()%20000), door_timer(10000 + 5000 * lvl), hurt_timer(0),
 	hp(tex, 3+ (prevhp /2), 8, prevhp, 8, 4, 8), bar_bg(tex, 160, 8, 322, 16, 4, 8),
 	door(tex, 20+rand()%300, 30+rand()%200, 16, 16, 4, 8),
-	door_text(270, 8, 16, 16, "%02d:%02d:%02d", 0, 0, 0), hurt_snd("hurt.wav"), 
-	door_snd("door.wav"), exit_snd("exit.wav"), pwr_snd("powerup.wav"), zdie("zdie.wav"), player(tex){
+	door_text(270, 8, 16, 16, "%02d:%02d:%02d", 0, 0, 0), hurt_snd("hurt.ogg"), 
+	door_snd("door.ogg"), exit_snd("exit.ogg"), pwr_snd("powerup.ogg"), zdie("zdie.ogg"), player(tex){
 	
 	hp.setFrame(2, 1);
 	door.setFrame(0, 2);

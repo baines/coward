@@ -7,7 +7,7 @@
 class Title : public Gamestate {
 	public:
 		Title(StateMgr& mgr) : Gamestate(mgr), bg(NULL, 160, 120, 320, 240),
-			title("title.png", 160, 120, 320, 240), thunder("thunder.wav"),
+			title("title.png", 160, 120, 320, 240), thunder("thunder.ogg"),
 			myname(270, 8, 8, 8, "2011 Alex Baines"), ltimer(200+rand()%1000),
 			ldist(0-rand()%2000){
 			

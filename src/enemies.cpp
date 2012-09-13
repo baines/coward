@@ -1,7 +1,7 @@
 #include "enemy.h"
 #include <cmath>
 
-Zombie::Zombie(int x, int y) : Enemy(x, y, 8, 8, 4, 8), die("zdie.wav") {
+Zombie::Zombie(int x, int y) : Enemy(x, y, 8, 8, 4, 8), die("zdie.ogg") {
 	speed = (rand()%100 / 120.0f) + 0.1f;
 	setFrame(1, 0);
 	ttl = 2000 + rand()% 4000;
@@ -24,7 +24,7 @@ void Zombie::update(float playerx, float playery, float delta) {
 
 }
 
-Bouncer::Bouncer(int x, int y) : Enemy(x, y, 4, 4, 8, 16), boing("boing.wav") {
+Bouncer::Bouncer(int x, int y) : Enemy(x, y, 4, 4, 8, 16), boing("boing.ogg") {
 	float rot = (rand()%628) / 100.0f;
 	float spd = 0.35f+(rand()%20) / 10.0f;
 

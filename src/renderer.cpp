@@ -63,7 +63,7 @@ Vert4& Renderer::addQuad(float x, float y, float w, float h, uint16_t* out){
 
 void Renderer::resize(int w, int h){
 	if(screen->flags & SDL_FULLSCREEN) return;
-	float scale, f = modff(fminf(h / 240.0f, w / 320.0f), &scale);
+	float scale, f = std::modf(util::min(h / 240.0f, w / 320.0f), &scale);
 	if(f > 0.5f || scale < 1.0f) scale++;
 	windowed_w = gl.initial_w * scale;
 	windowed_h = gl.initial_h * scale;
