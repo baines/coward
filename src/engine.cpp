@@ -16,7 +16,7 @@ bool Engine::run(){
 				running = false; 
 			break;
 			case SDL_VIDEORESIZE:
-				renderer.resize(e.resize.w, e.resize.h);
+				//renderer.resize(e.resize.w, e.resize.h);
 			break;
 			case SDL_KEYUP:
 			case SDL_KEYDOWN:
@@ -32,10 +32,12 @@ bool Engine::run(){
 			break;				
 		}
 	}
-	
-	while((delta = SDL_GetTicks() - time) < (renderer.vsync ? 1 : 16))
-		SDL_Delay(16-delta);
-	//delta = SDL_GetTicks() - time;
+
+	delta = SDL_GetTicks() - time;
+	if(!renderer.vsync && delta < 5){
+		SDL_Delay(5 - delta);
+		delta = SDL_GetTicks() - time;
+	}
 	time += delta;
 	
 	statemgr.update(input, delta);

@@ -22,7 +22,7 @@ void Player::update(Input& input, Uint32 delta){
 	xVel = util::max(-128, util::min(128, xVel));
 	yVel = util::max(-128, util::min(128, yVel));
 
-	x = util::max(util::min(x + ((float)xVel * delta) / 1024.0f, 316.0f), 4.0f);
-	y = util::max(util::min(y + ((float)yVel * delta) / 1024.0f, 236.0f), 20.0f);
+	x = util::max(util::min(x + (((float)xVel * delta) / 1024.0f), 316.0f), 4.0f);
+	y = util::max(util::min(y + (((float)yVel * delta) / 1024.0f), 236.0f), 20.0f);
 }
 

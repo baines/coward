@@ -22,7 +22,7 @@ CXXFLAGS += -ffast-math -fno-rtti -fno-exceptions
 
 ifdef RELEASE
     CXXFLAGS += -Os -fno-stack-protector -U_FORTIFY_SOURCE
-    LDFLAGS += -Wl,-hash-style=both -Wl,--as-needed
+    LDFLAGS += -Wl,-s -Wl,-hash-style=both -Wl,--as-needed
 else
     CXXFLAGS += -O2 -g
 endif
@@ -30,7 +30,7 @@ endif
 all: ../$(exec)
 
 ../$(exec): $(objects)
-	$(CXX) -o ../$(exec) $(objects) $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o ../$(exec) $(objects) $(LDFLAGS)
 
 $(builddir)/%.o: %.cpp $(headers)
 	$(CXX) $(CXXFLAGS) -c $< -o $@

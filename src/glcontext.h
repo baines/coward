@@ -27,7 +27,7 @@ public:
         Viewport(xOff, yOff, initial_w * scale, initial_h * scale);
 		MatrixMode(GL_TEXTURE);
 		LoadIdentity();
-		Scalef(1.0f/128.0f, 1.0f/128.0f, 0.0f);
+		Scalef(1.0f/128.0f, 1.0f/128.0f, 1.0f);
 		MatrixMode(GL_MODELVIEW);
 		Enable(GL_TEXTURE_2D);
 		Enable(GL_BLEND);

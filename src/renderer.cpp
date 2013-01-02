@@ -3,6 +3,7 @@
 #include "SDL/SDL.h"
 #include <cstdio>
 #include <cmath>
+#include "icon.h"
 
 GLContext gl;
 
@@ -23,7 +24,8 @@ Renderer::Renderer(int w, int h,const char* caption) : gfx(1024),
 	fullscreen_w = SDL_GetVideoInfo()->current_w;
 	fullscreen_h = SDL_GetVideoInfo()->current_h;
 	
-	reload(w, h, SDL_OPENGL | SDL_RESIZABLE);
+	setIcon();
+	reload(w, h, SDL_OPENGL);
 }
 
 void Renderer::reload(int w, int h, int flags){
@@ -43,7 +45,7 @@ void Renderer::reload(int w, int h, int flags){
 }
 
 void Renderer::toggleFullscreen() {
-	int flags = screen->flags ^ (SDL_FULLSCREEN | SDL_RESIZABLE);
+	int flags = screen->flags ^ (SDL_FULLSCREEN);
 	
 	if((flags & SDL_FULLSCREEN)){
 		reload(fullscreen_w, fullscreen_h, flags);
