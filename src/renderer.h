@@ -5,7 +5,7 @@
 #include <vector>
 
 typedef struct Vertex{
-	short vertx, verty;
+	float vertx, verty;
 	short textx, texty;
 	unsigned int texID;
 } Vertex;

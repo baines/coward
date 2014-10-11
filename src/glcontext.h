@@ -18,16 +18,20 @@ public:
 	{}
 	void createContext(int w, int h){
 		loadAllFuncs();			
+
 		MatrixMode(GL_PROJECTION);
 		LoadIdentity();
 		Ortho(0, initial_w, initial_h, 0, -1, 1);
-        int scale = util::min(h / initial_h, w / initial_w);
-        int xOff = (w - (initial_w * scale)) / 2;
-        int yOff = (h - (initial_h * scale)) / 2;
-        Viewport(xOff, yOff, initial_w * scale, initial_h * scale);
+		Translatef(0.375f, 0.375f, 0.0f);
+		int scale = util::min(h / initial_h, w / initial_w);
+		int xOff = (w - (initial_w * scale)) / 2;
+		int yOff = (h - (initial_h * scale)) / 2;
+		Viewport(xOff, yOff, initial_w * scale, initial_h * scale);
+
 		MatrixMode(GL_TEXTURE);
 		LoadIdentity();
 		Scalef(1.0f/128.0f, 1.0f/128.0f, 1.0f);
+
 		MatrixMode(GL_MODELVIEW);
 		Enable(GL_TEXTURE_2D);
 		Enable(GL_BLEND);

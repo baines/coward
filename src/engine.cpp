@@ -33,10 +33,8 @@ bool Engine::run(){
 		}
 	}
 
-	delta = SDL_GetTicks() - time;
-	if(!renderer.vsync && delta < 5){
-		SDL_Delay(5 - delta);
-		delta = SDL_GetTicks() - time;
+	while((delta = SDL_GetTicks() - time) < 8){
+		SDL_Delay(8 - delta);
 	}
 	time += delta;
 	

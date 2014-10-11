@@ -20,6 +20,7 @@ _GL_FN(void, Scalef, (GLfloat x, GLfloat y, GLfloat z))
 _GL_FN(void, VertexPointer, (GLint  size,  GLenum  type,  GLsizei  stride,  const GLvoid *  pointer))
 _GL_FN(void, TexCoordPointer, (GLint  size,  GLenum  type,  GLsizei  stride,  const GLvoid *  pointer))
 _GL_FN(void, EnableClientState, (GLenum  cap))
+_GL_FN(void, Translatef, (GLfloat x, GLfloat y, GLfloat z))
 #ifdef UNDEF_GL_FN
 	#undef _GL_FN
 	#undef UNDEF_GL_FN

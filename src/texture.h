@@ -10,7 +10,7 @@
 class Texture {
 public:
 	Texture(const char* name){
-		id = name == NULL ? 0 : util::cache<GLuint>(getmap(), name, load, "./data/img/");
+		id = name == NULL ? getDefaultTexture() : util::cache<GLuint>(getmap(), name, load, "./data/img/");
 	}
 	static void reload(){
 		TexMap& m = getmap();
@@ -22,6 +22,11 @@ public:
 	GLuint id;
 private:
 	typedef std::map<std::string, GLuint> TexMap;
+	static GLuint getDefaultTexture(){
+		static GLuint t = 0;
+		if(t == 0) t = load(NULL);
+		return t;
+	}
 	static TexMap& getmap(){
 		static TexMap map;
 		return map;
@@ -32,13 +37,24 @@ private:
 		return load2(path, tex);
 	}			
 	static GLuint load2(const char* path, GLuint texture){
-		SDL_Surface* surface = IMG_Load(path);
+		SDL_Surface* surface;
+		if(!path){
+			uint32_t p = 0xffffffffUL;
+			surface = SDL_CreateRGBSurfaceFrom(
+				&p, 1, 1, 0, 4,	0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff
+			);
+		} else {
+			surface = IMG_Load(path);
+		}
+
 		if (!surface){
 			fprintf(stderr, "%s missing or corrupt.\n", path);
 			exit(1);
 		}
 
 		gl.BindTexture(GL_TEXTURE_2D, texture);
+		gl.TexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+		gl.TexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
 		gl.TexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		gl.TexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		gl.TexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);

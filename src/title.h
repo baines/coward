@@ -7,7 +7,7 @@
 class Title : public Gamestate {
 	public:
 		Title(StateMgr& mgr) : Gamestate(mgr), bg(NULL, 160, 120, 320, 240),
-			title("title.png", 160, 120, 320, 240), thunder("thunder.ogg"),
+			title("title.png", 160, 120, 512, 256), thunder("thunder.ogg"),
 			myname(270, 8, 8, 8, "2011 Alex Baines"), ltimer(200+rand()%1000),
 			ldist(0-rand()%2000){
 			
@@ -17,7 +17,7 @@ class Title : public Gamestate {
 			if(ltimer < ldist){
 				thunder.play();
 				ltimer = 4000 + rand()%15000;	
-				ldist = 0 - rand()%2000;
+				ldist = 0 - rand()%500;
 			}
 			if(input.keys[SDLK_SPACE]){
 			    input.keys[SDLK_SPACE] = false;
@@ -27,7 +27,7 @@ class Title : public Gamestate {
 			}
 		}
 		void draw(std::vector<uint16_t>& gfx){
-			if(ltimer < 0 && ltimer > -150) bg.draw(gfx);
+			if(ltimer < 0 && ltimer > -200) bg.draw(gfx);
 			title.draw(gfx);
 			myname.draw(gfx);
 		}

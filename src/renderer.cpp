@@ -31,6 +31,7 @@ Renderer::Renderer(int w, int h,const char* caption) : gfx(1024),
 void Renderer::reload(int w, int h, int flags){
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 0);
 	
 	if(!(screen = SDL_SetVideoMode(w, h, 32, flags))){
 		fprintf(stderr, "Video error: %s\n", SDL_GetError());
@@ -56,7 +57,7 @@ void Renderer::toggleFullscreen() {
 
 Vert4& Renderer::addQuad(float x, float y, float w, float h, uint16_t* out){
 	float _w = w / 2.0f, _h = h / 2.0f;
-	short x1 = x - _w, x2 = x + _w, y1 = y - _h, y2 = y + h;
+	float x1 = x - _w, x2 = x + _w, y1 = y - _h, y2 = y + h;
 	Vert4 v = {{{ x1, y1 }, { x2, y1 }, { x2, y2 }, { x1, y2 }}};
 	uint16_t r = gfx.push(v);
 	*out = r * 4;
@@ -81,7 +82,7 @@ void Renderer::draw(std::vector<uint16_t>& indices){
 	uint32_t i = indices[0] / 4, num = 0, oldnum = 0, sz = indices.size(), tex;
 	gl.Clear(GL_COLOR_BUFFER_BIT);
 	
-	gl.VertexPointer(2, GL_SHORT, sizeof(Vertex), &(gfx[0].v[0].vertx));
+	gl.VertexPointer(2, GL_FLOAT, sizeof(Vertex), &(gfx[0].v[0].vertx));
 	gl.TexCoordPointer(2, GL_SHORT, sizeof(Vertex), &(gfx[0].v[0].textx));
 	
 	while(num < sz){
